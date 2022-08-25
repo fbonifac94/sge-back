@@ -1,0 +1,8 @@
+com/sge/repository/usuario/UsuarioRepository.class
+com/sge/auth/JwtService.class
+com/sge/auth/UserDetailServiceImpl.class
+com/sge/repository/permiso/PermisoEntity.class
+com/sge/SgeApplication.class
+com/sge/repository/usuario/UsuarioEntity.class
+com/sge/controller/auth/AuthController.class
+com/sge/repository/persona/PersonaEntity.class

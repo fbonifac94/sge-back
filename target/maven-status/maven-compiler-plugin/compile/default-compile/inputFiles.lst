@@ -1,0 +1,8 @@
+/home/boni/Documentos/Proyectos/sge-back/sge/src/main/java/com/sge/repository/persona/PersonaEntity.java
+/home/boni/Documentos/Proyectos/sge-back/sge/src/main/java/com/sge/controller/auth/AuthController.java
+/home/boni/Documentos/Proyectos/sge-back/sge/src/main/java/com/sge/auth/JwtService.java
+/home/boni/Documentos/Proyectos/sge-back/sge/src/main/java/com/sge/repository/usuario/UsuarioEntity.java
+/home/boni/Documentos/Proyectos/sge-back/sge/src/main/java/com/sge/repository/usuario/UsuarioRepository.java
+/home/boni/Documentos/Proyectos/sge-back/sge/src/main/java/com/sge/repository/permiso/PermisoEntity.java
+/home/boni/Documentos/Proyectos/sge-back/sge/src/main/java/com/sge/SgeApplication.java
+/home/boni/Documentos/Proyectos/sge-back/sge/src/main/java/com/sge/auth/UserDetailServiceImpl.java
