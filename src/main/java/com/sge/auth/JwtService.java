@@ -17,6 +17,7 @@ public class JwtService {
 		}
 		
 		Claims claims = Jwts.claims();
-		claims.put("us", claims)
+		
+		return null;
 	}
 }
