@@ -40,8 +40,15 @@ public class UsuarioEntity implements UserDetails {
 	@Column(name = "usuario_id")
 	private Long usuarioId;
 
+	@OneToOne
+	@JoinColumn(name = "persId")
+	private PersonaEntity persona;
+
 	@Column(name = "usuario_mail")
 	private String mail;
+
+	@Column(name = "usuario_username")
+	private String username;
 
 	@Column(name = "usuario_password")
 	private String password;
@@ -50,18 +57,9 @@ public class UsuarioEntity implements UserDetails {
 	@Column(name = "usuario_enabled")
 	private Boolean enabled;
 
-	@OneToOne
-	@JoinColumn(name = "persId")
-	private PersonaEntity persona;
-
 	@ManyToOne
 	@JoinColumn(name = "rolId")
 	private RolEntity rol;
-
-	public UsuarioEntity(String mail, String password) {
-		this.mail = mail;
-		this.password = password;
-	}
 
 	public Long getUsuarioId() {
 		return usuarioId;
@@ -69,6 +67,10 @@ public class UsuarioEntity implements UserDetails {
 
 	public PersonaEntity getPersona() {
 		return persona;
+	}
+
+	public String getMail() {
+		return mail;
 	}
 
 	@Override
@@ -83,27 +85,31 @@ public class UsuarioEntity implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.mail;
+		return this.username;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
 		return enabled;
+	}
+
+	public RolEntity getRol() {
+		return rol;
 	}
 
 }

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: localhost    Database: sge
+-- Host: 127.0.0.1    Database: sge
 -- ------------------------------------------------------
--- Server version	8.0.30-0ubuntu0.20.04.2
+-- Server version	8.0.30
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -77,13 +77,15 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `usuario_id` int NOT NULL AUTO_INCREMENT,
   `usuario_mail` varchar(80) NOT NULL,
-  `usuario_password` varchar(45) NOT NULL,
+  `usuario_password` varchar(100) NOT NULL,
   `pers_id` int NOT NULL,
   `usuario_enabled` varchar(1) NOT NULL DEFAULT 'N',
   `rol_id` int NOT NULL,
+  `usuario_username` varchar(45) NOT NULL,
   PRIMARY KEY (`usuario_id`),
   UNIQUE KEY `user_id_UNIQUE` (`usuario_id`),
   UNIQUE KEY `user_mail_UNIQUE` (`usuario_mail`),
+  UNIQUE KEY `usuario_username_UNIQUE` (`usuario_username`),
   KEY `pers_id_idx` (`pers_id`),
   KEY `rol_id_idx` (`rol_id`),
   CONSTRAINT `rol_id` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`rol_id`)
@@ -96,7 +98,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'pepepares@asd.com','asd',1,'N',1);
+INSERT INTO `usuarios` VALUES (1,'pepepares@asd.com','$2a$12$SqJ.caadG3wNDDHPaQXv8ewZoy3is86LFK6D2bGOYMXNsakfOa9i6',1,'Y',1,'pepepares');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -109,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-25 14:38:52
+-- Dump completed on 2022-08-27  0:36:18

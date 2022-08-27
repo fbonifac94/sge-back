@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepository extends CrudRepository<UsuarioEntity, Long> {
 
-	@Query("SELECT u FROM UsuarioEntity u WHERE u.mail = :mail")
-	Optional<UsuarioEntity> findByMail(String mail);
+	@Query("SELECT u FROM UsuarioEntity u WHERE u.username = :username")
+	Optional<UsuarioEntity> findByUsername(String username);
 }
