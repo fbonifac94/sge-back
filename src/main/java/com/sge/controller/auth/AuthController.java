@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,11 +30,17 @@ public class AuthController {
 	private JwtService jwtService;
 
 	@PostMapping(path = "/authenticate", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> login(@RequestBody LoginRequest body) {
+	public ResponseEntity<String> authenticate(@RequestBody AuthenticationRequest body) {
 		authManager.authenticate(new UsernamePasswordAuthenticationToken(body.getUsername(), body.getPassword()));
 		Usuario usuario = usuarioService.getUsuarioByUsername(body.getUsername());
 		String jwt = jwtService.generateJwt(usuario);
 		return ResponseEntity.ok(jwt);
 	}
 
+	@PostMapping(path = "/register/{role}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> registerAlumno(@PathVariable String tipoUsuario, @RequestBody RegisterRequest body) {
+		Usuario usuario = usuarioService.createUsuario(tipoUsuario, body.getNombre(), body.getApellido(),
+				body.getUsername(), body.getMail(), body.getPassword());
+		return ResponseEntity.ok(usuario.toString());
+	}
 }

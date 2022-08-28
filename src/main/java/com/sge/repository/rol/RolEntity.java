@@ -2,6 +2,8 @@ package com.sge.repository.rol;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +17,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "roles")
 @NoArgsConstructor
 @Data
-public class RolEntity {
+public class RolEntity implements Serializable {
+
+	private static final long serialVersionUID = -5475001572181518957L;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -24,4 +28,8 @@ public class RolEntity {
 
 	@Column(name = "rol_nombre")
 	private String rolNombre;
+
+	public RolEntity(Long rolId) {
+		this.rolId = rolId;
+	}
 }

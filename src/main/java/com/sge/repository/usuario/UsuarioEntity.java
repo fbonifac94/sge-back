@@ -73,6 +73,16 @@ public class UsuarioEntity implements UserDetails {
 		return mail;
 	}
 
+	public UsuarioEntity(PersonaEntity persona, String mail, String username, String password, Boolean enabled,
+			RolEntity rol) {
+		this.persona = persona;
+		this.mail = mail;
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.rol = rol;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Stream.of(new SimpleGrantedAuthority(rol.getRolNombre())).collect(Collectors.toList());
@@ -111,5 +121,4 @@ public class UsuarioEntity implements UserDetails {
 	public RolEntity getRol() {
 		return rol;
 	}
-
 }
