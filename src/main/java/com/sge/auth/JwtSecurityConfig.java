@@ -34,8 +34,8 @@ public class JwtSecurityConfig {
         return http.cors().and()
                 .csrf().disable()
                 .authorizeRequests().
-                        antMatchers("/authenticate").permitAll().
-                        antMatchers("/register").permitAll().
+                        antMatchers("/api/authenticate").permitAll().
+                        antMatchers("/api/register/**").permitAll().
                         anyRequest().hasRole("").and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)

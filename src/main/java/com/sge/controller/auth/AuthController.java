@@ -17,7 +17,7 @@ import com.sge.domain.Usuario;
 import com.sge.service.UsuarioService;
 
 @RestController
-@RequestMapping
+@RequestMapping(path = "/api")
 public class AuthController {
 
 	@Autowired
@@ -30,14 +30,14 @@ public class AuthController {
 	private JwtService jwtService;
 
 	@PostMapping(path = "/authenticate", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> authenticate(@RequestBody AuthenticationRequest body) {
+	public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest body) {
 		authManager.authenticate(new UsernamePasswordAuthenticationToken(body.getUsername(), body.getPassword()));
 		Usuario usuario = usuarioService.getUsuarioByUsername(body.getUsername());
 		String jwt = jwtService.generateJwt(usuario);
-		return ResponseEntity.ok(jwt);
+		return ResponseEntity.ok(new AuthenticationResponse(jwt));
 	}
 
-	@PostMapping(path = "/register/{role}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/register/{tipoUsuario}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> registerAlumno(@PathVariable String tipoUsuario, @RequestBody RegisterRequest body) {
 		Usuario usuario = usuarioService.createUsuario(tipoUsuario, body.getNombre(), body.getApellido(),
 				body.getUsername(), body.getMail(), body.getPassword());
